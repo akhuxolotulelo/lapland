@@ -1,0 +1,467 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Lapland Car Wash</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: crisp northern-morning single page. Wide hero with illustration, three wash tiers named by Lapland winter temperatures, a timed process list, hours and a booking form. Boldness lives in the hero type and aurora ribbons; everything else stays quiet. */
+:root {
+  --bg: #F2F6F8;
+  --surface: #FFFFFF;
+  --fg: #0D2231;
+  --muted: #4C6575;
+  --line: #D4E0E7;
+  --ice: #DCEBF2;
+  --accent: #1B6F94;
+  --accent-fg: #FFFFFF;
+  --aurora: #1FA886;
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09161F; --surface: #0F2230; --fg: #E6F0F5; --muted: #93AEBD; --line: #1E3647;
+    --ice: #12303F; --accent: #5CB8DE; --accent-fg: #06202D; --aurora: #43D1A8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09161F; --surface: #0F2230; --fg: #E6F0F5; --muted: #93AEBD; --line: #1E3647;
+  --ice: #12303F; --accent: #5CB8DE; --accent-fg: #06202D; --aurora: #43D1A8;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* header */
+.site-header { border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.brand svg { width: 28px; height: 28px; }
+.nav { display: flex; gap: 22px; flex-wrap: wrap; font-weight: 500; font-size: 0.95rem; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--fg); }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 600 1rem var(--font-body);
+  padding: 14px 24px; border-radius: 999px; border: 2px solid var(--accent);
+  background: var(--accent); color: var(--accent-fg); text-decoration: none; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--fg); filter: none; }
+
+/* hero */
+.hero { overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 56px 64px; }
+.hero h1 { font-size: clamp(2.6rem, 7vw, 5.2rem); font-weight: 800; margin-block: 14px 20px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p.lead { font-size: 1.15rem; color: var(--muted); max-width: 34em; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.facts { display: flex; gap: 10px 28px; flex-wrap: wrap; margin-top: 32px; padding: 0; list-style: none; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
+.facts strong { color: var(--fg); font-weight: 500; }
+.hero-art { min-width: 0; }
+.hero-art svg { width: 100%; height: auto; display: block; }
+
+/* sections */
+section { padding-block: 72px; }
+.section-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; max-width: 40em; }
+.section-head h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 700; }
+.section-head p { color: var(--muted); }
+.band { background: var(--surface); border-block: 1px solid var(--line); }
+
+/* tiers */
+.tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.tier { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.tier.featured { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.tier .temp { font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.08em; opacity: 0.8; }
+.tier h3 { font-size: 2rem; font-weight: 800; }
+.tier .price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.tier .price small { font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; opacity: 0.75; letter-spacing: 0; }
+.tier p.blurb { opacity: 0.85; font-size: 0.98rem; }
+.tier ul { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid currentColor; border-top-color: color-mix(in srgb, currentColor 22%, transparent); display: flex; flex-direction: column; gap: 10px; font-size: 0.97rem; }
+.tier li { display: flex; gap: 10px; }
+.tier li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: 0.6em; border-radius: 50%; background: var(--aurora); }
+.tier.featured li::before { background: var(--accent-fg); opacity: 0.8; }
+.tier .btn { margin-top: auto; }
+.tier.featured .btn { background: var(--accent-fg); color: var(--accent); border-color: var(--accent-fg); }
+.price-note { margin-top: 18px; font-size: 0.88rem; color: var(--muted); }
+
+/* process */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; counter-reset: step; }
+.steps li { padding: 22px 20px 0 0; border-top: 3px solid var(--line); position: relative; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.steps li::before { content: ""; position: absolute; top: -3px; left: 0; height: 3px; width: calc(var(--w) * 1%); background: var(--aurora); }
+.steps .min { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.06em; }
+.steps h3 { font-size: 1.2rem; font-weight: 700; }
+.steps p { font-size: 0.95rem; color: var(--muted); }
+.steps-total { margin-top: 28px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
+
+/* extras + membership */
+.two-col { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 500; }
+td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 16px; }
+td small { display: block; color: var(--muted); font-size: 0.88rem; }
+.pass { background: var(--ice); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; gap: 14px; }
+.pass h3 { font-size: 1.8rem; font-weight: 800; }
+.pass .price { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; }
+.pass .price small { font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.pass p { color: var(--muted); }
+
+/* visit */
+.visit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+.visit h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 14px; }
+.hours td, .hours th { padding: 10px 0; }
+.hours td { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.contact-list { display: flex; flex-direction: column; gap: 14px; margin-top: 26px; }
+.contact-list dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.contact-list dd { margin: 2px 0 0; font-size: 1.05rem; user-select: all; }
+.contact-list { margin-bottom: 0; }
+
+/* form */
+form.book { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+label { font-size: 0.88rem; font-weight: 600; }
+input, select { font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; width: 100%; min-width: 0; }
+input:focus, select:focus { border-color: var(--accent); }
+.form-actions { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; }
+.form-actions .btn { align-self: flex-start; }
+#booking-result { font-size: 0.97rem; padding: 14px 16px; border-radius: 12px; background: var(--ice); }
+#booking-result[hidden] { display: none; }
+.fineprint { font-size: 0.85rem; color: var(--muted); }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 28px; display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+
+/* responsive */
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 36px 48px; }
+  .hero-art { order: -1; max-width: 520px; }
+  .tiers { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .steps li { padding: 20px 0 22px; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+  .steps li p { flex-basis: 100%; }
+  .two-col, .visit { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  section { padding-block: 52px; }
+}
+@media (max-width: 560px) {
+  form.book { grid-template-columns: minmax(0, 1fr); padding: 20px; }
+  .nav { gap: 16px; }
+  .tier, .pass { padding: 22px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ribbon { animation: drift 9s ease-in-out infinite alternate; }
+  .ribbon.r2 { animation-duration: 12s; animation-delay: -3s; }
+  .ribbon.r3 { animation-duration: 15s; animation-delay: -6s; }
+  .drop { animation: fall 2.4s linear infinite; }
+  .drop.d2 { animation-delay: -0.8s; }
+  .drop.d3 { animation-delay: -1.6s; }
+}
+@keyframes drift { from { transform: translateX(-10px); } to { transform: translateX(14px); } }
+@keyframes fall { from { transform: translateY(-14px); opacity: 0; } 20% { opacity: 1; } to { transform: translateY(40px); opacity: 0; } }
+</style>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Lapland Car Wash, home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" style="fill:var(--accent)"/><path d="M16 5v22M6.5 10.5l19 11M25.5 10.5l-19 11" style="stroke:var(--accent-fg);stroke-width:2.2;stroke-linecap:round;fill:none"/></svg>
+      Lapland
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#washes">Washes</a>
+      <a href="#process">Process</a>
+      <a href="#extras">Extras</a>
+      <a href="#visit">Visit</a>
+      <a href="#book">Book</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Hand wash and valet · Open daily</p>
+        <h1>Your car, <em>polar-night</em> clean.</h1>
+        <p class="lead">Lapland washes by hand with pH-neutral snow foam, soft cloths and spot-free rinse water. No brushes that scratch, no streaks left behind. Most cars are done in under fifteen minutes.</p>
+        <div class="cta-row">
+          <a class="btn" href="#book">Book a wash</a>
+          <a class="btn ghost" href="#washes">See prices</a>
+        </div>
+        <ul class="facts">
+          <li><strong>07:00 to 19:00</strong> every day</li>
+          <li><strong>13 min</strong> Frost wash</li>
+          <li><strong>R90</strong> from</li>
+        </ul>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 520 340" role="img" aria-label="A car under falling water drops with green aurora ribbons above">
+          <path class="ribbon r1" d="M10 70 C90 20 150 110 240 60 S400 20 510 80" style="fill:none;stroke:var(--aurora);stroke-width:16;stroke-linecap:round;opacity:0.55"/>
+          <path class="ribbon r2" d="M10 105 C100 60 170 140 260 95 S410 60 510 118" style="fill:none;stroke:var(--accent);stroke-width:10;stroke-linecap:round;opacity:0.5"/>
+          <path class="ribbon r3" d="M30 135 C110 100 190 165 280 125 S420 100 500 150" style="fill:none;stroke:var(--aurora);stroke-width:5;stroke-linecap:round;opacity:0.4"/>
+          <g style="fill:var(--accent)">
+            <ellipse class="drop" cx="190" cy="150" rx="3" ry="6"/>
+            <ellipse class="drop d2" cx="262" cy="148" rx="3" ry="6"/>
+            <ellipse class="drop d3" cx="334" cy="152" rx="3" ry="6"/>
+            <ellipse class="drop d2" cx="226" cy="140" rx="3" ry="6"/>
+            <ellipse class="drop" cx="300" cy="142" rx="3" ry="6"/>
+            <ellipse class="drop d3" cx="370" cy="146" rx="3" ry="6"/>
+          </g>
+          <path d="M40 232 L40 206 Q40 194 54 192 L122 184 L166 144 Q174 136 186 136 L330 136 Q344 136 352 144 L396 184 L460 194 Q482 198 482 216 L482 232 Z" style="fill:var(--fg)"/>
+          <path d="M174 180 L198 148 L254 148 L254 180 Z" style="fill:var(--ice)"/>
+          <path d="M266 148 L326 148 L362 180 L266 180 Z" style="fill:var(--ice)"/>
+          <rect x="452" y="206" width="22" height="9" rx="4" style="fill:var(--aurora)"/>
+          <rect x="46" y="208" width="14" height="9" rx="4" style="fill:var(--accent)"/>
+          <circle cx="135" cy="236" r="36" style="fill:var(--fg)"/>
+          <circle cx="135" cy="236" r="20" style="fill:var(--ice)"/>
+          <circle cx="135" cy="236" r="7" style="fill:var(--fg)"/>
+          <circle cx="388" cy="236" r="36" style="fill:var(--fg)"/>
+          <circle cx="388" cy="236" r="20" style="fill:var(--ice)"/>
+          <circle cx="388" cy="236" r="7" style="fill:var(--fg)"/>
+          <rect x="20" y="276" width="480" height="6" rx="3" style="fill:var(--line)"/>
+          <g style="fill:var(--surface);stroke:var(--line);stroke-width:1.5">
+            <circle cx="70" cy="300" r="9"/><circle cx="112" cy="308" r="6"/><circle cx="420" cy="302" r="10"/><circle cx="462" cy="310" r="5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <section id="washes" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Wash packages</p>
+        <h2>Three degrees of clean</h2>
+        <p>Each tier is named for a real Lapland winter night. Pick the temperature your car needs.</p>
+      </div>
+      <div class="tiers">
+        <article class="tier">
+          <p class="temp">−10°C</p>
+          <h3>Frost</h3>
+          <p class="price">R90 <small>sedan</small></p>
+          <p class="blurb">A quick, careful exterior wash for a car that is dusty but not dirty.</p>
+          <ul>
+            <li>Pre-rinse and snow foam</li>
+            <li>Hand wash with soft cloths</li>
+            <li>Spot-free rinse and dry</li>
+            <li>Windows cleaned inside and out</li>
+          </ul>
+          <a class="btn ghost" href="#book" data-pick="Frost">Choose Frost</a>
+        </article>
+        <article class="tier featured">
+          <p class="temp">−25°C</p>
+          <h3>Permafrost</h3>
+          <p class="price">R160 <small>sedan</small></p>
+          <p class="blurb">Our most booked wash. Everything in Frost, plus the inside brought back to fresh.</p>
+          <ul>
+            <li>Everything in Frost</li>
+            <li>Full interior vacuum</li>
+            <li>Dashboard and door panels wiped</li>
+            <li>Tyre shine</li>
+          </ul>
+          <a class="btn" href="#book" data-pick="Permafrost">Choose Permafrost</a>
+        </article>
+        <article class="tier">
+          <p class="temp">−40°C</p>
+          <h3>Polar Night</h3>
+          <p class="price">R320 <small>sedan</small></p>
+          <p class="blurb">A full valet with protection, for cars that should look new again.</p>
+          <ul>
+            <li>Everything in Permafrost</li>
+            <li>Hand-applied wax sealant</li>
+            <li>Mats shampooed</li>
+            <li>Leather or vinyl conditioned</li>
+          </ul>
+          <a class="btn ghost" href="#book" data-pick="Polar Night">Choose Polar Night</a>
+        </article>
+      </div>
+      <p class="price-note">Sample prices in rand. SUVs and bakkies add R30 to R60 depending on size.</p>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What happens to your car</p>
+        <h2>Five stages, about 13 minutes</h2>
+        <p>Every wash follows the same order so grit comes off before a cloth ever touches the paint.</p>
+      </div>
+      <ol class="steps">
+        <li style="--w:8"><span class="min">1 min</span><h3>Pre-rinse</h3><p>Loose dirt and road salt come off with low-pressure water.</p></li>
+        <li style="--w:23"><span class="min">2 min</span><h3>Snow foam</h3><p>A thick pH-neutral foam lifts the grit that is left.</p></li>
+        <li style="--w:38"><span class="min">5 min</span><h3>Hand wash</h3><p>Clean microfibre cloths, two buckets, panel by panel.</p></li>
+        <li style="--w:15"><span class="min">2 min</span><h3>Spot-free rinse</h3><p>Filtered water dries without leaving marks.</p></li>
+        <li style="--w:23"><span class="min">3 min</span><h3>Dry and finish</h3><p>Towel dry, windows polished, tyres checked.</p></li>
+      </ol>
+      <p class="steps-total">Timings are for a Frost wash on a sedan.</p>
+    </div>
+  </section>
+
+  <section id="extras" class="band">
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow">Add to any wash</p>
+          <h2>Extras</h2>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <tbody>
+              <tr><th scope="row">Engine bay clean<small>Degrease and rinse, petrol and diesel</small></th><td class="num">R120</td></tr>
+              <tr><th scope="row">Pet hair removal<small>Seats and boot lining</small></th><td class="num">R80</td></tr>
+              <tr><th scope="row">Mat shampoo<small>All four mats, extracted</small></th><td class="num">R50</td></tr>
+              <tr><th scope="row">Headlight restoration<small>Sand, polish and seal, per pair</small></th><td class="num">R150</td></tr>
+              <tr><th scope="row">Tyre shine<small>Included in Permafrost and Polar Night</small></th><td class="num">R30</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <aside class="pass">
+        <p class="eyebrow">Monthly membership</p>
+        <h3>Northern Pass</h3>
+        <p class="price">R450 <small>per month</small></p>
+        <p>Unlimited Frost washes for one car, up to one a day. Add a Permafrost once a month at no extra charge.</p>
+        <a class="btn" href="#book" data-pick="Northern Pass">Ask about the pass</a>
+      </aside>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap visit">
+      <div>
+        <p class="eyebrow">Visit us</p>
+        <h3>Hours</h3>
+        <table class="hours">
+          <tbody>
+            <tr><th scope="row">Monday to Friday</th><td>07:00 to 19:00</td></tr>
+            <tr><th scope="row">Saturday</th><td>07:00 to 18:00</td></tr>
+            <tr><th scope="row">Sunday and holidays</th><td>08:00 to 16:00</td></tr>
+          </tbody>
+        </table>
+        <dl class="contact-list">
+          <div><dt>Address</dt><dd>14 Snowline Road, Johannesburg (sample address)</dd></div>
+          <div><dt>Phone</dt><dd>011 555 0142 (sample number)</dd></div>
+          <div><dt>Email</dt><dd>hello@lapland-carwash.example</dd></div>
+        </dl>
+      </div>
+      <div id="book">
+        <p class="eyebrow" style="margin-bottom:10px">Book a wash</p>
+        <h3 style="font-size:1.4rem;margin-bottom:14px">Pick a time</h3>
+        <form class="book" id="book-form" novalidate>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Thandi Nkosi">
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="082 000 0000">
+          </div>
+          <div class="field">
+            <label for="f-vehicle">Vehicle</label>
+            <input id="f-vehicle" name="vehicle" type="text" placeholder="White VW Polo">
+          </div>
+          <div class="field">
+            <label for="f-package">Package</label>
+            <select id="f-package" name="package">
+              <option>Frost</option>
+              <option selected>Permafrost</option>
+              <option>Polar Night</option>
+              <option>Northern Pass</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-date">Date</label>
+            <input id="f-date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="f-time">Time</label>
+            <select id="f-time" name="time">
+              <option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option>
+              <option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit">Request this slot</button>
+            <p id="booking-result" role="status" aria-live="polite" hidden></p>
+            <p class="fineprint">This form is a preview. Connect it to your booking system or phone line before going live.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Lapland Car Wash</span>
+    <span>Cold water, warm service.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById("book-form");
+  var result = document.getElementById("booking-result");
+  var pkg = document.getElementById("f-package");
+  var date = document.getElementById("f-date");
+
+  try {
+    var d = new Date();
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    var today = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+    date.min = today;
+    date.value = today;
+  } catch (e) {}
+
+  document.querySelectorAll("[data-pick]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      pkg.value = a.getAttribute("data-pick");
+    });
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = form.elements.name.value.trim();
+    var phone = form.elements.phone.value.trim();
+    if (!name || !phone || !form.elements.date.value) {
+      result.hidden = false;
+      result.textContent = "Add your name, phone number and a date so we can hold the slot.";
+      return;
+    }
+    result.hidden = false;
+    result.textContent = "Slot noted for " + name + ": " + pkg.value + " on " + form.elements.date.value + " at " + form.elements.time.value + ". Preview only, nothing has been sent yet.";
+  });
+})();
+</script>
+
+</body></html>
